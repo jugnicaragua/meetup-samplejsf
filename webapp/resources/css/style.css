@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+
+.table{   
+   border-collapse:collapse;
+   border:1px solid #000000;
+}
+
+.header{
+   text-align:center;
+   background:none repeat scroll 0 0 #B5B5B5;
+   border-bottom:1px solid #000000;  
+   padding:2px;
+}
+
+.odd-row {
+   text-align:center;
+   background:none repeat scroll 0 0 #FFFFFFF;	
+}
+
+.even-row {
+   text-align:center;
+   background:none repeat scroll 0 0 #D3D3D3;
+}
+
+.wid10{
+	width: 10%;
+}
+
+.wid15{
+	width: 15%;
+}
+
+.wid20{
+	width: 20%;
+}
+
+.wid30{
+	width: 30%;
+}
+
+.wid40{
+	width: 40%;
+}
+
+.wid50{
+	width: 50%;
+}

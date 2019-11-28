@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Eventos</title>
+		<h:outputStylesheet library = "css" name = "style.css"  /> 
+	</h:head>
+	<h:body>
+			<p:dataTable id="eventos" emptyMessage="No se encontraron registros"
+			value="#{eventoBackBean.eventos}" var="evento">
+			<f:facet name="header">
+				<p:outputPanel style="width:50%; text-align:left" >
+					<h:outputText value="Eventos JUG" />
+				</p:outputPanel>
+				<p:outputPanel></p:outputPanel>
+				
+			</f:facet>
+			<p:column headerText="Nombre">
+				<h:outputText value="#{evento.nombre}" />
+			</p:column>
+			<p:column headerText="Descripción">
+				<h:outputText value="#{evento.descripcion}" />
+			</p:column>
+			<p:column headerText="Fecha"> 
+				<h:outputText value="#{evento.fecha}" />
+			</p:column>
+		</p:dataTable>
+		
+		
+		
+	</h:body>
+</html>
