@@ -10,7 +10,7 @@
 	</h:head>
 	<h:body styleClass="background">
 	<h:form id="global-message">
-		<p:growl showDetail="true" sticky="true" life="1000" widgetVar="global-message" />
+		<p:growl sticky="true" life="1000" widgetVar="global-message" />
 	</h:form>
 	<div class="ui-g">
 		<div class="ui-g-6">
@@ -29,11 +29,11 @@
 				</f:facet>
 				<h:panelGrid columns="2" columnClasses="width-20, width30" styleClass="width-100">
 					<p:outputLabel for="nombre" value="Nombre:" />
-					<p:inputText styleClass="width-100" id="nombre" value="#{eventoBackBean.evento.nombre}" />
+					<p:inputText requiredMessage="Nombre es Requerido" label="Nombre" required="true" styleClass="width-100" id="nombre" value="#{eventoBackBean.evento.nombre}" />
 					<p:outputLabel for="descripcion" value="Descripción:" />
-					<p:inputTextarea styleClass="width-100" id="descripcion" value="#{eventoBackBean.evento.descripcion}" />
+					<p:inputTextarea requiredMessage="Descripción es Requerida" label="Descripción" required="true" styleClass="width-100" id="descripcion" value="#{eventoBackBean.evento.descripcion}" />
 					<p:outputLabel for="fecha"  value="Fecha:" />
-					<p:calendar styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />			
+					<p:calendar requiredMessage="Fecha es requerida" label="Fecha" required="true" styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />			
 				</h:panelGrid>				
 			</p:panel>
 		</h:form>
@@ -58,19 +58,16 @@
 						<h:outputText value="#{evento.descripcion}" />
 					</p:column>
 					<p:column headerText="Fecha" style="text-align:center"> 
-						<h:outputText value="#{evento.fecha}" />
+						<h:outputText value="#{evento.fecha}" >
+							<f:convertDateTime pattern="dd/MM/yyyy"/>
+						</h:outputText>
 					</p:column>
 					<p:column headerText="Pasivo" style="text-align:center">
 						<p:inputSwitch disabled="true" value="#{evento.pasivo}" onLabel="Si" offLabel="No"/>
 					</p:column>
 				</p:dataTable>
 			</p:panel>	
-			
 		</div>
 	</div>
-	
-	
-	
-		
 	</h:body>
 </html>
