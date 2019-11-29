@@ -34,8 +34,8 @@
 					<p:inputTextarea requiredMessage="Descripción es Requerida" label="Descripción" required="true" styleClass="width-100" id="descripcion" value="#{eventoBackBean.evento.descripcion}" />
 					<p:outputLabel for="fecha"  value="Fecha:" />
 					<p:calendar requiredMessage="Fecha es requerida" label="Fecha" required="true" styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />
-					<p:outputLabel for="pasivo" value="Pasivo:" />
-					<p:inputSwitch id="pasivo" offLabel="No" onLabel="Si" value="#{eventoBackBean.evento.pasivo}" />		
+					<p:outputLabel for="pasivo" value="Pasivo:" rendered="#{eventoBackBean.evento.id ne null}" />
+					<p:inputSwitch id="pasivo" offLabel="No" onLabel="Si" value="#{eventoBackBean.evento.pasivo}" rendered="#{eventoBackBean.evento.id ne null}" />		
 				</h:panelGrid>				
 			</p:panel>
 		</h:form>
