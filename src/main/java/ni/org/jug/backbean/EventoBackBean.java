@@ -3,6 +3,7 @@ package ni.org.jug.backbean;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -27,8 +28,12 @@ public class EventoBackBean implements Serializable {
 		evento.setNombre("Aprendamos a Desarrollar aplicaciones Web con Java");
 		evento.setDescripcion("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor ");
 		evento.setPasivo(false);
-		evento.setFecha(LocalDate.now());
+		evento.setFecha(new Date());
 		this.getEventos().add(evento);
+	}
+	
+	public void crearNuevoEvento() {
+		this.setEvento(new Evento());
 	}
 	
 	public Evento getEvento() {

@@ -2,6 +2,7 @@ package ni.org.jug.entity;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Date;
 
 public class Evento implements Serializable{
 	/**
@@ -11,7 +12,7 @@ public class Evento implements Serializable{
 	private Integer id;
 	private String nombre;
 	private String descripcion;
-	private LocalDate fecha;
+	private Date fecha;
 	private Boolean pasivo;
 	
 	public String getDescripcion() {
@@ -22,11 +23,11 @@ public class Evento implements Serializable{
 		this.descripcion = descripcion;
 	}
 	
-	public LocalDate getFecha() {
+	public Date getFecha() {
 		return fecha;
 	}
 	
-	public void setFecha(LocalDate fecha) {
+	public void setFecha(Date fecha) {
 		this.fecha = fecha;
 	}
 	

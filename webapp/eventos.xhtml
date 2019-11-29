@@ -11,16 +11,12 @@
 	<h:body styleClass="background">
 	<div class="ui-g">
 		<div class="ui-g-6">
-			<p:panel styleClass="default-panel" id="registro">
-				
+		<h:form id="formRegistroEvento">
+			<p:panel styleClass="default-panel" id="registro">				
 				<f:facet name="header">				
 					<p:outputPanel styleClass="ui-g-6" >
 						<h:outputText value="Nuevo Evento" />
 					</p:outputPanel>
-					<p:outputPanel styleClass="ui-g-6 position-right"> 
-						
-					</p:outputPanel>
-					
 					
 				</f:facet>
 				<h:panelGrid columns="2" columnClasses="width-20, width30" styleClass="width-100">
@@ -30,31 +26,36 @@
 					<p:inputTextarea styleClass="width-100" id="descripcion" value="#{eventoBackBean.evento.descripcion}" />
 					<p:outputLabel for="fecha"  value="Fecha:" />
 					<p:calendar styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />			
-				</h:panelGrid>
+				</h:panelGrid>				
 			</p:panel>
+		</h:form>
 		</div>
 		<div class="ui-g-6">	
 			<p:panel styleClass="default-panel">
 				<f:facet name="header">
-					<p:outputPanel style="width:50%; text-align:left" >
+					<p:outputPanel styleClass="ui-g-6" >
 						<h:outputText value="Eventos JUG" />
 					</p:outputPanel>
+					<p:outputPanel styleClass="ui-g-6 position-right"> 
+						<p:commandButton value="Nuevo" update=":formRegistroEvento" 
+							actionListener="#{eventoBackBean.crearNuevoEvento()}" icon="fa fa-plus" />
+					</p:outputPanel>
 				</f:facet>
-				<p:dataTable id="eventos" emptyMessage="No se encontraron registros" styleClass="default-panel"
+				<p:dataTable id="eventos" emptyMessage="No se encontraron registros"
 					value="#{eventoBackBean.eventos}" var="evento">				
-				<p:column headerText="Nombre">
-					<h:outputText value="#{evento.nombre}" />
-				</p:column>
-				<p:column headerText="Descripción">
-					<h:outputText value="#{evento.descripcion}" />
-				</p:column>
-				<p:column headerText="Fecha" style="text-align:center"> 
-					<h:outputText value="#{evento.fecha}" />
-				</p:column>
-				<p:column headerText="Pasivo" style="text-align:center">
-					<p:inputSwitch disabled="true" value="#{evento.pasivo}" onLabel="Si" offLabel="No"/>
-				</p:column>
-			</p:dataTable>
+					<p:column headerText="Nombre">
+						<h:outputText value="#{evento.nombre}" />
+					</p:column>
+					<p:column headerText="Descripción">
+						<h:outputText value="#{evento.descripcion}" />
+					</p:column>
+					<p:column headerText="Fecha" style="text-align:center"> 
+						<h:outputText value="#{evento.fecha}" />
+					</p:column>
+					<p:column headerText="Pasivo" style="text-align:center">
+						<p:inputSwitch disabled="true" value="#{evento.pasivo}" onLabel="Si" offLabel="No"/>
+					</p:column>
+				</p:dataTable>
 			</p:panel>	
 			
 		</div>
