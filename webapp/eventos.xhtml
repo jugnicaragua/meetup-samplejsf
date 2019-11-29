@@ -9,6 +9,9 @@
 		<h:outputStylesheet library = "css" name = "style.css"  /> 
 	</h:head>
 	<h:body styleClass="background">
+	<h:form id="global-message">
+		<p:growl showDetail="true" sticky="true" life="1000" widgetVar="global-message" />
+	</h:form>
 	<div class="ui-g">
 		<div class="ui-g-6">
 		<h:form id="formRegistroEvento">
@@ -17,7 +20,12 @@
 					<p:outputPanel styleClass="ui-g-6" >
 						<h:outputText value="Nuevo Evento" />
 					</p:outputPanel>
-					
+					<p:outputPanel styleClass="ui-g-6 position-right" >
+						<p:commandButton update=":lista-eventos, :global-message, :formRegistroEvento" 
+							value="Guardar" 
+							actionListener="#{eventoBackBean.guardar}" 
+							icon="fa fa-save" />
+					</p:outputPanel>
 				</f:facet>
 				<h:panelGrid columns="2" columnClasses="width-20, width30" styleClass="width-100">
 					<p:outputLabel for="nombre" value="Nombre:" />
@@ -31,7 +39,7 @@
 		</h:form>
 		</div>
 		<div class="ui-g-6">	
-			<p:panel styleClass="default-panel">
+			<p:panel id="lista-eventos" styleClass="default-panel">
 				<f:facet name="header">
 					<p:outputPanel styleClass="ui-g-6" >
 						<h:outputText value="Eventos JUG" />

@@ -7,8 +7,10 @@ import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 import ni.org.jug.entity.Evento;
 
@@ -21,6 +23,7 @@ public class EventoBackBean implements Serializable {
 	private List<Evento> eventos = new ArrayList<Evento>();
 	private Evento evento = new Evento();
 	
+	
 	@PostConstruct
 	public void init() {
 		Evento evento = new Evento();
@@ -31,6 +34,16 @@ public class EventoBackBean implements Serializable {
 		evento.setFecha(new Date());
 		this.getEventos().add(evento);
 	}
+	
+	public void guardar() {
+		this.getEvento().setId(this.getEventos().size()+1);
+		this.getEvento().setPasivo(false);
+		this.getEventos().add(evento);
+		FacesContext contexto = FacesContext.getCurrentInstance();
+		contexto.addMessage(null, new FacesMessage("Guardado Satisfactoriamente", ""));
+		crearNuevoEvento();
+	}
+	
 	
 	public void crearNuevoEvento() {
 		this.setEvento(new Evento());
