@@ -33,40 +33,47 @@
 					<p:outputLabel for="descripcion" value="Descripción:" />
 					<p:inputTextarea requiredMessage="Descripción es Requerida" label="Descripción" required="true" styleClass="width-100" id="descripcion" value="#{eventoBackBean.evento.descripcion}" />
 					<p:outputLabel for="fecha"  value="Fecha:" />
-					<p:calendar requiredMessage="Fecha es requerida" label="Fecha" required="true" styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />			
+					<p:calendar requiredMessage="Fecha es requerida" label="Fecha" required="true" styleClass="width-100" id="fecha" value="#{eventoBackBean.evento.fecha}" />
+					<p:outputLabel for="pasivo" value="Pasivo:" />
+					<p:inputSwitch id="pasivo" offLabel="No" onLabel="Si" value="#{eventoBackBean.evento.pasivo}" />		
 				</h:panelGrid>				
 			</p:panel>
 		</h:form>
 		</div>
 		<div class="ui-g-6">	
-			<p:panel id="lista-eventos" styleClass="default-panel">
-				<f:facet name="header">
-					<p:outputPanel styleClass="ui-g-6" >
-						<h:outputText value="Eventos JUG" />
-					</p:outputPanel>
-					<p:outputPanel styleClass="ui-g-6 position-right"> 
-						<p:commandButton value="Nuevo" update=":formRegistroEvento" 
-							actionListener="#{eventoBackBean.crearNuevoEvento()}" icon="fa fa-plus" />
-					</p:outputPanel>
-				</f:facet>
-				<p:dataTable id="eventos" emptyMessage="No se encontraron registros"
-					value="#{eventoBackBean.eventos}" var="evento">				
-					<p:column headerText="Nombre">
-						<h:outputText value="#{evento.nombre}" />
-					</p:column>
-					<p:column headerText="Descripción">
-						<h:outputText value="#{evento.descripcion}" />
-					</p:column>
-					<p:column headerText="Fecha" style="text-align:center"> 
-						<h:outputText value="#{evento.fecha}" >
-							<f:convertDateTime pattern="dd/MM/yyyy"/>
-						</h:outputText>
-					</p:column>
-					<p:column headerText="Pasivo" style="text-align:center">
-						<p:inputSwitch disabled="true" value="#{evento.pasivo}" onLabel="Si" offLabel="No"/>
-					</p:column>
-				</p:dataTable>
-			</p:panel>	
+			<h:form id="lista-eventos">
+				<p:panel  styleClass="default-panel">
+					<f:facet name="header">
+						<p:outputPanel styleClass="ui-g-6" >
+							<h:outputText value="Eventos JUG" />
+						</p:outputPanel>
+						<p:outputPanel styleClass="ui-g-6 position-right"> 
+							<p:commandButton value="Nuevo" update=":formRegistroEvento" 
+								actionListener="#{eventoBackBean.crearNuevoEvento()}" icon="fa fa-plus" />
+							<p:commandButton value="Editar" icon="fa fa-pencil" update=":formRegistroEvento" />
+						</p:outputPanel>
+					</f:facet>
+					<p:dataTable id="eventos" emptyMessage="No se encontraron registros"
+						rowKey="#{evento.id}" selection="#{eventoBackBean.evento}"			
+						selectionMode="single" value="#{eventoBackBean.eventos}" var="evento">
+						<p:ajax event="rowDblselect" update=":formRegistroEvento" />				
+						<p:column headerText="Nombre">
+							<h:outputText value="#{evento.nombre}" />
+						</p:column>
+						<p:column headerText="Descripción">
+							<h:outputText value="#{evento.descripcion}" />
+						</p:column>
+						<p:column headerText="Fecha" style="text-align:center"> 
+							<h:outputText value="#{evento.fecha}" >
+								<f:convertDateTime pattern="dd/MM/yyyy"/>
+							</h:outputText>
+						</p:column>
+						<p:column headerText="Pasivo" style="text-align:center">
+							<p:inputSwitch disabled="true" value="#{evento.pasivo}" onLabel="Si" offLabel="No"/>
+						</p:column>
+					</p:dataTable>
+				</p:panel>	
+			</h:form>
 		</div>
 	</div>
 	</h:body>

@@ -44,7 +44,6 @@ public class EventoBackBean implements Serializable {
 		crearNuevoEvento();
 	}
 	
-	
 	public void crearNuevoEvento() {
 		this.setEvento(new Evento());
 	}
