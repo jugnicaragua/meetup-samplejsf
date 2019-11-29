@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -36,12 +37,29 @@ public class EventoBackBean implements Serializable {
 	}
 	
 	public void guardar() {
-		this.getEvento().setId(this.getEventos().size()+1);
-		this.getEvento().setPasivo(false);
-		this.getEventos().add(evento);
+		if(this.getEvento().getId()==null) {
+			this.getEvento().setId(this.getEventos().size()+1);
+			this.getEvento().setPasivo(false);
+			this.getEventos().add(evento);
+		}else {
+			this.actualizar();
+		}
+		
 		FacesContext contexto = FacesContext.getCurrentInstance();
 		contexto.addMessage(null, new FacesMessage("Guardado Satisfactoriamente", ""));
 		crearNuevoEvento();
+	}
+	
+	private void actualizar() {
+		Iterator<Evento> allEvents = this.getEventos().iterator();
+		while (allEvents.hasNext()) {
+			Evento filtroEvento = allEvents.next();
+			if(filtroEvento.getId().equals(this.getEvento().getId())) {
+				this.getEventos().remove(filtroEvento);				
+				this.getEventos().add(this.getEvento()) ;
+			}
+			
+		}
 	}
 	
 	public void crearNuevoEvento() {
